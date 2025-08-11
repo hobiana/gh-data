@@ -19,7 +19,8 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     ouputs:
-      script-file: ${{ steps.publish.outputs.script-file }} #script-file here as it's the variable i put in the 'Publish JS filename' step >> script-file={}
+      script-file: ${{ steps.publish.outputs.script-file }}
+      #script-file here as it's the variable i put in the 'Publish JS filename' step >> script-file={}
       # script-file: ${{ steps.<ID = publish here>.outputs.<VARIABLE = the output name in the step> }}
     steps:
       - name: Get code
@@ -49,5 +50,7 @@ jobs:
           name: dist-files
       - name: Output contents
         run: ls
+      - name: oiutput filename
+        run: echo ${{ needs.build.outputs.script-file }}
       - name: Deploy
         run: echo "Deploying..."
